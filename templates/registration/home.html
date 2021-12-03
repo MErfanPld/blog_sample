@@ -24,11 +24,12 @@
                             <th>وضعیت</th>
                         </tr>
                     </thead>
-                    <tbody>
+
+                    <body>
 
                         {% for article in object_list %}
                         <tr>
-                            <td>{{article.title}}</td>
+                            <td><a href="{% url 'account:update' article.pk %}">{{article.title}}</a></td>
                             <td><img src="{{ article.thumbnail.url }}" width="120"></td>
                             <td>{{article.category_to_str}}</td>
                             <td>{{ article.author.get_full_name }}</td>
@@ -46,7 +47,7 @@
                         </tr>
                         {% endfor %}
 
-                    </tbody>
+                    </body>
                 </table>
             </div>
             <!-- /.card-body -->
