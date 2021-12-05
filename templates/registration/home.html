@@ -28,16 +28,14 @@
 
                             <body>
                                 {% for article in object_list %}
-                                    <tr>
-                                        {% if article.status == 'd' or user.is_superuser %}
-                                            <td>
-                                                <a href="{% url 'account:update' article.pk %}"></a>
-                                                {{ article.title }}
-                                            </a>
-                                        </td>
-                                    {% else %}
-                                        <td>{{ article.title }}</td>
-                                    {% endif %}
+                                    <td>
+                                        {% if article.status in 'bd'|make_list or user.is_superuser %}
+                                            <a href="{% url 'account:update' article.pk %}">{{ article.title }}</a>
+                                        {% else %}
+                                            {{ article.title }}
+                                        {% endif %}
+                                    </td>
+
                                     <td><img src="{{ article.thumbnail.url }}" width="120"/></td>
                                     <td>{{ article.category_to_str }}</td>
                                     <td>{{ article.author.get_full_name }}</td>
@@ -51,6 +49,10 @@
                                             </a>
                                         {% else %}
                                             <span class="badge badge-danger">پیش نویس</span>
+
+                                            <a href="{% url 'blog:preview' article.pk %}" class="badge badge-secondary" target="_blank">
+                                                پیش نمایش در سایت
+                                            </a>
                                         {% endif %}
 
                                         {% if user.is_superuser %}
@@ -65,7 +67,7 @@
                     </table>
                 </div>
                 <!-- /.card-body -->
-                {% else %}
+            {% else %}
                 <h3>محتوایی برای نمایش وجود ندارد.</h3>
             {% endif %}
 
