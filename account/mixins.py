@@ -7,10 +7,10 @@ class FieldsMixin():
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_superuser:
             self.fields = ['author', 'title', 'slug', 'category',
-                           'description', 'thumbnail', 'publish', 'status']
+                           'description', 'thumbnail', 'publish', 'is_special', 'status']
         elif request.user.is_author:
             self.fields = ['title', 'slug', 'category',
-                           'description', 'thumbnail', 'publish']
+                           'description', 'thumbnail', 'publish', 'is_special', ]
         else:
             raise Http404("You cant see this page")
         return super().dispatch(request, *args, **kwargs)
