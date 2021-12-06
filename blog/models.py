@@ -40,7 +40,8 @@ class Article(models.Model):
         ('d', 'پیش نویس'),
         ('p', 'منتشر شده'),
     )
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='articles', verbose_name="نویسنده")
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL,
+                               related_name='articles', verbose_name="نویسنده")
     title = models.CharField(max_length=200, verbose_name="عنوان")
     slug = models.SlugField(max_length=200, unique=True, verbose_name="ادرس")
     category = models.ManyToManyField(
@@ -63,7 +64,7 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     def get_absolute_url(self):
         return reverse("account:home")
 
