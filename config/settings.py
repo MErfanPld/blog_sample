@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     'star_ratings',
+    'django_gravatar',
 ]
 
 MIDDLEWARE = [
